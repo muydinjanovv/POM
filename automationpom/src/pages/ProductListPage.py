@@ -1,3 +1,6 @@
+from automationpom.src.pages.CartPage import CartPage
+
+
 class ProductListPage:
 
     def __init__(self, page):
@@ -5,8 +8,8 @@ class ProductListPage:
         self._products_header = page.locator("span.title")
         self._burger_menu = page.locator("button#react-burger-menu-btn")
         self._logout_btn = page.locator("#logout_sidebar_link")
-        self._addOto_cart = page.locator(
-            "//div[text()='Sauce Labs Bike Light']/ancestor::div[@class='inventory_item']//button[text()='Add to cart']")
+        self._addOto_cart = page.locator("//div[text()='Sauce Labs Bike Light']/ancestor::div[@class='inventory_item']//button[text()='Add to cart']")
+        self._cart_icon = page.locator("a.shopping_cart_link")
 
     @property
     def product_header(self):
@@ -34,3 +37,9 @@ class ProductListPage:
     def click_add_to_cart_or_remove(self, product):
         """Clicks the add to cart button for a given product"""
         self.get_add_remove_cart_locator(product).click()
+        return self
+
+    def click_cart_icon(self):
+        """Clicks the cart icon"""
+        self._cart_icon.click()  
+        return CartPage(self.page)
