@@ -10,8 +10,6 @@ def test_login_with_standard_user(set_up_tear_down: None) -> None:
     products_p = login_p.do_login(credentials)
     expect(products_p.product_header).to_have_text("Products")
     page.screenshot(path="products.png")
-    
-
 
 def test_login_with_invalid_user(set_up_tear_down) -> None:
     page = set_up_tear_down
